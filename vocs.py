@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+import json
 
 def getLink(word):
 	link = "https://www.vocabulary.com/dictionary/"+word
@@ -71,3 +72,20 @@ def getTypeOf(content):
 
 def getAntonym(content):
 	return getInstance(content,"antonym")
+
+def getJSON(word):
+
+	page = getPage(word)
+	shortDef = getShortDefinition(page)
+	longDef = getLongDefinition(page)
+	synonym = getSynonym(page)
+	typeOf = getTypeOf(page)
+	antonym = getAntonym(page)
+	
+	json_dict["short"] = shortDef
+	json_dict["long"] = longDef
+	json_dict["synonym"] = synonym
+	json_dict["antonym"] = antonym
+	json_dict["typeof"] = typeOf
+	
+	return json.dumps(json_dict, indent = 4)
