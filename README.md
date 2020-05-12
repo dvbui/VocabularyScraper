@@ -30,9 +30,9 @@ and use the following functions
 - content: a string which is the return value of getPage(word)
 - Return value: an array of strings that are the synonyms of the given word
 - Similar functions: getAntonym(content), getTypeOf(content)
-### vocs.getJSON(content)
-- content: a string which is the return value of getPage(word)
-- Return value: a string which is a JSON dictionary with the following format
+### vocs.getJSON(word)
+- word: a string 
+- Return value: a string which is a JSON dictionary containing the information of the word with the following format
 ```
 {
     "short": "Adjacent means close to or near something. You may consider the people up and down your street to be neighbors, but your next-door neighbor is the person who lives in the house or apartment adjacent to yours.",
