@@ -75,6 +75,8 @@ def getAntonym(content):
 
 def getJSON(word):
 
+	json_dict = {}
+
 	page = getPage(word)
 	shortDef = getShortDefinition(page)
 	longDef = getLongDefinition(page)
