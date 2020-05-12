@@ -1,23 +1,74 @@
 from bs4 import BeautifulSoup
+from selenium import webdriver
 import requests
+
+def getLink(word):
+	link = "https://www.vocabulary.com/dictionary/"+word
+	return link
+
 # Input: a string
 # Output: a webpage in string
 def getPage(word):
-	link = "https://www.vocabulary.com/dictionary/"+word
+	link = getLink(word)
 	page = requests.get(link)
-	return page.content
+	return page.text
 	
+		
 # Input: 
 #	content - webpage in string
 # Output:
-#	short definition in string if it exists
+#	definition in string if it exists
 #	otherwise, empty string
-def getShortDefinition(content):
+def getDefinition(content,defType):
 	soup = BeautifulSoup(content)
-	shortDefDiv = soup.findAll("p", {"class": "short"})
+	shortDefDiv = soup.findAll("p", {"class": defType})
 	if (len(shortDefDiv)==0):
 		return ""
 	assert len(shortDefDiv)==1
 	shortDefDiv = shortDefDiv[0]
 	return shortDefDiv.get_text()
 
+	
+def getShortDefinition(content):
+	return getDefinition(content,"short")
+
+def getLongDefinition(content):
+	return getDefinition(content,"long")
+
+def getInstance(content,insType):
+	soup = BeautifulSoup(content)
+	instanceDiv = soup.findAll("dl", {"class": "instances"})
+	if (insType=="synonym"):
+		matchType = "Synonyms:"
+	if (insType=="antonym"):
+		matchType = "Antonyms:"
+	if (insType=="typeof"):
+		matchType = "Type of:"
+	currentType = "Synonyms:"
+	res = {}
+	for instance in instanceDiv:
+		dtDiv = instance.findAll("dt")
+		assert(len(dtDiv)==1)
+		dtDiv = dtDiv[0]
+		if (dtDiv.get_text()!=""):
+			currentType = dtDiv.get_text()
+		if (currentType==matchType):
+			aDiv = instance.findAll("a",{"class": "word"})
+			for wordDiv in aDiv:
+				word = wordDiv.get_text()
+				res[word] = ""
+	
+	ret = []
+	for key in res:
+		ret.append(key)
+	
+	return ret
+	
+def getSynonym(content):
+	return getInstance(content,"synonym")
+
+def getTypeOf(content):
+	return getInstance(content,"typeof")
+
+def getAntonym(content):
+	return getInstance(content,"antonym")
