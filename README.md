@@ -18,19 +18,19 @@ pip3 install json
 import vocs
 ```
 and use the following functions
-### getPage(word)
+### vocs.getPage(word)
 - word: a string 
 - Return value: a string which is the page content before Javascript codes are run :(
-### getShortDefinition(content)
+### vocs.getShortDefinition(content)
 - content: a string which is the return value of getPage(word)
 - Return value: a string which is the short definition
-### getLongDefinition(content)
+### vocs.getLongDefinition(content)
 - Similar to getShortDefinition(content)
-### getSynonym(content)
+### vocs.getSynonym(content)
 - content: a string which is the return value of getPage(word)
 - Return value: an array of strings that are the synonyms of the given word
 - Similar functions: getAntonym(content), getTypeOf(content)
-### getJSON(content)
+### vocs.getJSON(content)
 - content: a string which is the return value of getPage(word)
 - Return value: a string which is a JSON dictionary with the following format
 ```
