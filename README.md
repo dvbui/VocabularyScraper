@@ -6,11 +6,8 @@ Yet Another Unofficial Application Programming Interface for Vocabulary.com
 - This API cannot get Usage Examples.
 ## Prerequisites
 - Python 3
-```
-pip3 install beautifulsoup4
-pip3 install requests
-pip3 install json
-```
+- See requirements.txt
+
 ## How to Use
 - Install the prerequisites
 - Clone this repository
