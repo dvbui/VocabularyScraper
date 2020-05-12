@@ -19,6 +19,7 @@ pip3 install json
 import vocs
 ```
 and use the following functions
+(You can see test.py for more details. Note that you may be banned from Vocabulary.com for sending too many requests if you run test.py)
 ### vocs.getPage(word)
 - word: a string 
 - Return value: a string which is the page content before Javascript codes are run :(
