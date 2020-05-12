@@ -1,4 +1,4 @@
-import main
+import vocs
 import json
 
 def testGetDefinition(testcase = 'testWordList.txt'):
@@ -7,9 +7,9 @@ def testGetDefinition(testcase = 'testWordList.txt'):
 
 	for line in f:
 		word = line[:-1]
-		page = main.getPage(word)
-		shortDef = main.getShortDefinition(page)
-		longDef = main.getLongDefinition(page)
+		page = vocs.getPage(word)
+		shortDef = vocs.getShortDefinition(page)
+		longDef = vocs.getLongDefinition(page)
 		g.write(word+" - "+shortDef+" - "+longDef+"\n")
 		
 	g.close()
@@ -23,12 +23,12 @@ def testToJSON(testcase = 'testWordList.txt'):
 	for line in f:
 		word = line[:-1]
 		json_dict[word] = {}
-		page = main.getPage(word)
-		shortDef = main.getShortDefinition(page)
-		longDef = main.getLongDefinition(page)
-		synonym = main.getSynonym(page)
-		typeOf = main.getTypeOf(page)
-		antonym = main.getAntonym(page)
+		page = vocs.getPage(word)
+		shortDef = vocs.getShortDefinition(page)
+		longDef = vocs.getLongDefinition(page)
+		synonym = vocs.getSynonym(page)
+		typeOf = vocs.getTypeOf(page)
+		antonym = vocs.getAntonym(page)
 		
 		json_dict[word]["short"] = shortDef
 		json_dict[word]["long"] = longDef
