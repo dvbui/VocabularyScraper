@@ -3,6 +3,7 @@ Yet Another Unofficial Application Programming Interface for Vocabulary.com
 ## Features
 - Get the short and the long main definition of a word
 - Get a list of synonyms, antonyms, and "type of" words of a word
+- This API cannot get Usage Examples.
 ## Prerequisites
 - Python 3
 ```
